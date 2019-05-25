@@ -56,3 +56,10 @@ git branch -d dev
 git branch -m dev dev2
 //创建分支并切换至该分支
 git branch checkout -b dev
+
+//分支内容合并,在master分支下，将master分支和dev分支内容合并
+git merge dev
+//查看工作区和暂存区的差异
+git diff
+//查看暂存区和版本库的差异
+git diff --staged
