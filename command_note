@@ -40,9 +40,9 @@ git rm -f index.html
 //如果文件已被修改，只将暂存区中的删除。
 git rm --cached index.html
 //重命名文件
-(前缀没有git，需要手动添加到暂存区)
+//(前缀没有git，需要手动添加到暂存区)
 mv index.html index2.html
-(前缀有git，工作区和暂存区都会被改动)
+//(前缀有git，工作区和暂存区都会被改动)
 git mv index.html index2.html
 //查看分支
 git branch
@@ -66,4 +66,13 @@ git diff --staged
 //查看两个版本之间的差异，选择log日志中的版本号进行比较，推荐使用8位长度以上
 git diff  be70b52 c39e038
 //查看两个分支的差异
-git diff master fix 
+git diff master dev
+
+//在分支dev下，修改文件后还没有提交，不能切换到master分支上，需要执行git stash先保存修改记录，再切换master分支。
+git stash
+//在master分支切换回dev分支后，可以查询之前git stash保存的记录
+git stash list
+//将保存记录拉取下来,(stash@{0}是记录名称)
+git stash apply stash@{0}
+//或者拉取下来并且删除
+git stash pop stash@{0}
