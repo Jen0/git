@@ -1,0 +1,5 @@
+克隆公司Github项目后推送操作
+//1.首先在公司账号上添加配置ssh publickey
+//2.再使用ssh链接克隆到本地
+git clone git@github.com:Jen0/git.git
+//3.就可以正常操作了

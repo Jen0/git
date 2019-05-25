@@ -4,6 +4,8 @@ git push https://github.com/***/*** master
 //2.然后输入GitHub账号密码
 //3.Bash窗口生成sshkey，windows系统在用户目录下找到.ssh/id_rsa.pub，复制内容到github中，新建一个sshkey
 ssh-keygen
+ssh-keygen -t rsa -C "youremail@example.com"
+
 
 
 Github代码操作：
