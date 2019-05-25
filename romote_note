@@ -22,6 +22,8 @@ git push https://github.com/***/***
 git remote add github git@github.com:***/***.git
 //查看添加的远程别名列表
 git remote -v
+//删除远程别名
+git remote remove github
 //然后推送到Github远程仓库
 git push github master
 //也可以用别名进行拉取至本地
