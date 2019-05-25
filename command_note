@@ -76,3 +76,5 @@ git stash list
 git stash apply stash@{0}
 //或者拉取下来并且删除
 git stash pop stash@{0}
+
+test
