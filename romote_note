@@ -1,0 +1,28 @@
+配置Github远程仓库：
+//1.将本地仓库推送到Github远程仓库上
+git push https://github.com/***/*** master
+//2.然后输入GitHub账号密码
+//3.Bash窗口生成sshkey，windows系统在用户目录下找到.ssh/id_rsa.pub，复制内容到github中，新建一个sshkey
+ssh-keygen
+
+
+Github代码操作：
+//1.新建文件夹
+//2.git 初始化
+git init
+//3.拉取远程仓库代码
+git pull git@github.com:***/***.git master
+//4.修改提交至版本库
+//5.推送到Github远程仓库
+//5.1 方式一
+git push git@github.com:***/***.git
+//5.2 方式二
+git push https://github.com/***/***
+//5.3 方式三：将远程仓库名称起个别名
+git remote add github git@github.com:***/***.git
+//查看添加的远程别名列表
+git remote -v
+//然后推送到Github远程仓库
+git push github master
+//也可以用别名进行拉取至本地
+git pull github master
