@@ -25,12 +25,12 @@ git commit -m 'description'
 git commit -am 'description'
 //撤销上一次提交，并将暂存区的文件重新提交
 git commit --amend 
----> 进入vim编辑器  只可以修改文件提交描述
-//工作区错误或者放弃，要回退上个版本
+---> 进入vim编辑器  可以修改文件提交描述和文件内容
+//工作区错误或者放弃，即从暂存区返回到工作区
 git checkout -- index.html
 git checkout -- .
-//撤销暂存区的提交
+//撤销暂存区的提交,即从版本库返回到暂存区。
 git reset HEAD index.html
 git reset HEAD .
-HEAD 
+
 
