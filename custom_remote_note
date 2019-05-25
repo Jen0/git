@@ -1,0 +1,15 @@
+用户在服务器上搭建git远程仓库
+前提准备首页在服务器上安装git。
+//1.创建git文件夹
+mkdir git
+//2.创建项目文件件
+mkdir project
+//3.进入项目文件内，初始化git
+git init --bare
+
+
+//向服务器远程仓库推送
+git push ssh://root@39.98.66.138/home/git/git_note.git master
+//拉取服务器最新的代码
+git pull ssh://root@39.98.66.138/home/git/git_note.git master
+//然后输入密码即可
