@@ -29,9 +29,15 @@ git commit --amend
 //工作区错误或者放弃，即从暂存区返回到工作区
 git checkout -- index.html
 git checkout -- .
-//撤销暂存区的提交,即从版本库返回到暂存区。
+//撤销暂存区的提交,即从版本库返回到暂存区
 git reset HEAD index.html
 git reset HEAD .
+//将版本库,暂存区和工作区都回退版本
+git reset --hard HEAD index.html
+//将版本库,暂存区都回退版本，工作区不受影响
+git reset --mixed HEAD index.html
+//将版本库都回退版本，暂存区和工作区不受影响
+git reset --soft HEAD index.html
 其中HEAD 可以替换为log日志中的版本号 至少为8位，即返回到指定的版本
 //删除文件，将工作区和暂存区的文件删除
 git rm index.html
