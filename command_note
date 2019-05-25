@@ -63,3 +63,6 @@ git merge dev
 git diff
 //查看暂存区和版本库的差异
 git diff --staged
+//查看两个版本之间的差异，选择log日志中的版本号进行比较，推荐使用8位长度以上
+git diff  be70b52 c39e038
+//查看两个分支的差异
