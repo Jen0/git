@@ -1,0 +1,36 @@
+//show dir
+ls -a
+//初始化
+git init
+//show status
+git status
+//查看详细日志
+git log
+//只查看日志描述和id
+git log -oneline
+//配置git账号
+git config --global user.name xxx
+git config --global user.email xxx@qq.com
+//查看配置列表
+git list
+//工作区添加到暂存区
+git add index.html
+git add .
+git add *
+//暂存区添加至版本库
+git commit -m 'description'
+//工作区直接提交至版本库
+git commit -m 'description'
+//将工作区修改的文件直接提交至版本库
+git commit -am 'description'
+//撤销上一次提交，并将暂存区的文件重新提交
+git commit --amend 
+---> 进入vim编辑器  只可以修改文件提交描述
+//工作区错误或者放弃，要回退上个版本
+git checkout -- index.html
+git checkout -- .
+//撤销暂存区的提交
+git reset HEAD index.html
+git reset HEAD .
+HEAD 
+
