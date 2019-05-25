@@ -39,8 +39,11 @@ git rm index.html
 git rm -f index.html
 //如果文件已被修改，只将暂存区中的删除。
 git rm --cached index.html
-//重命名文件(前缀没有git，需要手动添加到暂存区)
+//重命名文件
+(前缀没有git，需要手动添加到暂存区)
 mv index.html index2.html
+(前缀有git，工作区和暂存区都会被改动)
+git mv index.html index2.html
 
 
 
