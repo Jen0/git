@@ -4,9 +4,9 @@ ls -a
 git init
 //show status
 git status
-//查看详细日志
+//查看提交过的详细日志
 git log
-//只查看日志描述和id
+//只查看提交过的日志描述和版本号
 git log -oneline
 //配置git账号
 git config --global user.name xxx
@@ -32,5 +32,15 @@ git checkout -- .
 //撤销暂存区的提交,即从版本库返回到暂存区。
 git reset HEAD index.html
 git reset HEAD .
+其中HEAD 可以替换为log日志中的版本号 至少为前8/12位，即返回到指定的版本
+//删除文件，将工作区和暂存区的文件删除
+git rm index.html
+//如果文件已被修改，将工作区和暂存区的都删除
+git rm -f index.html
+//如果文件已被修改，只将暂存区中的删除。
+git rm --cached index.html
+//重命名文件(前缀没有git，需要手动添加到暂存区)
+mv index.html index2.html
+
 
 
