@@ -1,15 +1,57 @@
-用户在服务器上搭建git远程仓库
-前提准备首页在服务器上安装git。
-//1.创建git文件夹
-mkdir git
-//2.创建项目文件件
-mkdir project
-//3.进入项目文件内，初始化git
-git init --bare
+Linux服务器上搭建git远程仓库
+//1.安装git。
+yum install git
+//2.查看git版本号
+git --version
+//3.创建git用户(如果用户已经存在，就不要有冲突，起个另外的名字或者删除原来的用户)
+//  此时该用户会在/home文件夹下创建与用户同名的git文件夹，存放该用户的配置信息。
+useradd git
+//4.创建密码
+passwd git
+//5.创建git项目文件夹(文件夹最好以git为后缀，git规范)
+mkdir /home/git_repository.git
+//6.初始化git服务器配置
+git init --bare /home/git_repository.git
+//7.给git用户所有权限
+chown -R git:git git_repository.git
+//8.1 打开SSH登录配置，在/etc/ssh下
+vim sshd_config
+//8.2 打开注释
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+//8.3 重启ssh服务（这里是阿里云linux服务器）
+service sshd restart
+//9.在用户配置文件夹/home/git下新建.ssh文件夹，用来存放authorized_keys(所有用户的sshkey)
+mkdir /home/git/.ssh
+//10.修改.ssh文件的权限
+chown -R git:git /home/git/.ssh
+//11.最最最重要的一步，修改.ssh文件夹和authorized_keys的权限，如果权限不对，则authorized_keys文件不会被读取，即SSH免登陆失败
+// 注意：文件夹”.ssh”中的三个文件的权限，是有要求的，”自己之外的任何人对每个文件都没有写权限”。另外，”.ssh”文件夹是700 权限。如果权限有问题，会造成SSH 访问失败。
+chmod 700 /home/git/.ssh
+chmod 600 /home/git/.ssh/authorized_keys
+//12.禁止git用户SSH登录服务器，操纵服务器。（此条禁止后客户端不能自动发送sshkey的隐患）
+vim /etc/passwd
+//将
+git:......::/home/git:/bin/bash
+//改成
+git:......::/home/git:/usr/bin/git-shell
+//13.第12条设置后此条也需要增加：复制git-shell-commands的目录
+cp /usr/share/doc/git-1.7.4.4/contrib/git-shell-commands /home/git -R
+chown git:developers /home/git/git-shell-commands/ -R
+chmod +x /home/git/git-shell-commands/help
+chmod +x /home/git/git-shell-commands/list
 
-
+下面是客户端免登陆配置
+//1.生成ssh-key
+ssh-keygen -t rsa -C "123456@qq.com"
+//2.这里有三个回车，第一个是自定义文件名，方便多个项目一个邮箱冲突问题，其他两个回车是设置密码，一般不用设置，直接回车
+//3.将生成的用户文件夹下.shh文件夹的公钥发送给服务器
+ssh-copy-id -i ~/.ssh/id_rsa.pub git@192.168.1.1
+//4.git克隆
+git clone git@192.168.1.1:/home/git_repository.git
+//5.下面就可正常git操作push ，pull
 //向服务器远程仓库推送
-git push ssh://root@39.98.66.138/home/git/git_note.git master
+git push git@192.168.1.1:/home/git_repository.git master
 //拉取服务器最新的代码
-git pull ssh://root@39.98.66.138/home/git/git_note.git master
-//然后输入密码即可
+git pull git@192.168.1.1:/home/git_repository.git master
