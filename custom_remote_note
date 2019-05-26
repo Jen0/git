@@ -49,7 +49,7 @@ ssh-keygen -t rsa -C "123456@qq.com"
 //3.将生成的用户文件夹下.shh文件夹的公钥发送给服务器
 ssh-copy-id -i ~/.ssh/id_rsa.pub git@192.168.1.1
 或者使用root账号给其配置
-scp ~/.ssh/id_rsa.pub git@192.168.1.1:/home/git_repository/.ssh/authorized_keys
+scp ~/.ssh/id_rsa.pub root@192.168.1.1:/home/git_repository/.ssh/authorized_keys
 //4.git克隆
 git clone git@192.168.1.1:/home/git_repository.git
 //5.下面就可正常git操作push ，pull
