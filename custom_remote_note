@@ -30,7 +30,7 @@ chown -R git:git /home/git/.ssh
 // 注意：文件夹”.ssh”中的三个文件的权限，是有要求的，”自己之外的任何人对每个文件都没有写权限”。另外，”.ssh”文件夹是700 权限。如果权限有问题，会造成SSH 访问失败。
 chmod 700 /home/git/.ssh
 chmod 600 /home/git/.ssh/authorized_keys
-//12.禁止git用户SSH登录服务器，操纵服务器。（此条禁止后客户端不能自动发送sshkey的隐患）
+//12.禁止git用户SSH登录服务器，操纵服务器。（此条禁止后客户端不能自动发送sshkey的隐患，这里贴上参考链接https://github.com/codcodog/Blog/issues/93）
 vim /etc/passwd
 //将
 git:......::/home/git:/bin/bash
@@ -48,6 +48,8 @@ ssh-keygen -t rsa -C "123456@qq.com"
 //2.这里有三个回车，第一个是自定义文件名，方便多个项目一个邮箱冲突问题，其他两个回车是设置密码，一般不用设置，直接回车
 //3.将生成的用户文件夹下.shh文件夹的公钥发送给服务器
 ssh-copy-id -i ~/.ssh/id_rsa.pub git@192.168.1.1
+或者使用root账号给其配置
+scp ~/.ssh/id_rsa.pub git@192.168.1.1:/home/git_repository/.ssh/authorized_keys
 //4.git克隆
 git clone git@192.168.1.1:/home/git_repository.git
 //5.下面就可正常git操作push ，pull
